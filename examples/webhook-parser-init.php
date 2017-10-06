@@ -6,7 +6,7 @@ use YourSystem\HypotheticalErrorHandler; // This is purely hypothetical, remove 
 
 try {
     $options = [
-      'hook param' => 'cool-parameter' // This indicates which query parameter to look at to determine which hook was called.
+      'hook param' => 'cool-parameter' // This indicates which query parameter to use to determine which hook was called.
     ];
     $webhookParser = new WebhookParser($options);
     $data = $webhookParser->execute();
@@ -15,7 +15,7 @@ try {
         throw new Exception("Do something with this error: {$data['error']}");
     }
 
-    $controller = new HypotheticalResourceController($data['hook']); // Pass called hook to HypotheticalResourceController.
+    $controller = new HypotheticalResourceController($data['hook']); // Pass hook to HypotheticalResourceController.
     $controller->doSomethingCoolWithWebhookData($data); // Do something with the data.
 } catch (Exception $e) {
     new HypotheticalErrorHandler($e->getMessage()); // Doing something with error
